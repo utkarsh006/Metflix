@@ -1,0 +1,99 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "18915f6c130c8992d49d1ee56a327517",
+    "entities": [
+      {
+        "tableName": "Movie",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movieTitle` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `percentFinished` REAL NOT NULL, `isNetflixOnly` INTEGER NOT NULL, PRIMARY KEY(`movieTitle`))",
+        "fields": [
+          {
+            "fieldPath": "movieTitle",
+            "columnName": "movieTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "percentFinished",
+            "columnName": "percentFinished",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isNetflixOnly",
+            "columnName": "isNetflixOnly",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "movieTitle"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Category",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`categoryTitle` TEXT NOT NULL, PRIMARY KEY(`categoryTitle`))",
+        "fields": [
+          {
+            "fieldPath": "categoryTitle",
+            "columnName": "categoryTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "categoryTitle"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "MovieCategoryCrossRef",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`categoryTitle` TEXT NOT NULL, `movieTitle` TEXT NOT NULL, PRIMARY KEY(`categoryTitle`, `movieTitle`))",
+        "fields": [
+          {
+            "fieldPath": "categoryTitle",
+            "columnName": "categoryTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "movieTitle",
+            "columnName": "movieTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "categoryTitle",
+            "movieTitle"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '18915f6c130c8992d49d1ee56a327517')"
+    ]
+  }
+}
